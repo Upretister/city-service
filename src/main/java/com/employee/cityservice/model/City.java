@@ -5,8 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import com.employee.cityservice.model.Country;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +18,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CityBean implements Serializable {
+public class City implements Serializable {
 	
 	private static final long serialVersionUID = 10L;
 
@@ -24,11 +26,16 @@ public class CityBean implements Serializable {
 	@Column(name="city_id")
 	private long cityId;
 	
-	@Column(name="country_id")
+	@Column(name="country_id",insertable=false,updatable=false)
 	private long countryId;
 	
 	@Column(name="city_name")
 	private String city;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="country_id",nullable=false)
+	private Country country;
 	
 	/*
 	public long getCityId() {
