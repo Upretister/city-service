@@ -8,26 +8,32 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import com.employee.cityservice.model.Country;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="city")
-@Getter
+/*@Getter
 @Setter
-@NoArgsConstructor
+@Data*/
+/*@NoArgsConstructor*/
+/*@JsonSerialize(as=Country.class)*/
+//@AllArgsConstructor(onConstructor=@({@JsonCreator(mode = JsonCreator.Mode.DELEGATING)}))
+
 public class City implements Serializable {
 	
 	private static final long serialVersionUID = 10L;
 
 	@Id
 	@Column(name="city_id")
-	private long cityId;
+	private Long cityId;
 	
-	@Column(name="country_id",insertable=false,updatable=false)
-	private long countryId;
+	/*@Column(name="country_id")
+	private long countryId;*/
 	
 	@Column(name="city_name")
 	private String city;
@@ -37,24 +43,42 @@ public class City implements Serializable {
 	@JoinColumn(name="country_id",nullable=false)
 	private Country country;
 	
-	/*
-	public long getCityId() {
+	@JsonCreator
+	public City() {}
+	
+	/*public City(@JsonProperty("cityId") long cityId, @JsonProperty("city") String city,
+			@JsonProperty("countryId") long countryId) {
+		this.cityId = cityId;
+		this.city = city;
+		this.countryId = countryId;
+	}*/
+	
+	public Long getCityId() {
 		return cityId;
 	}
-	public void setCityId(long cityId) {
+	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
-	public long getCountryId() {
+	/*public long getCountryId() {
 		return countryId;
 	}
 	public void setCountryId(long countryId) {
 		this.countryId = countryId;
-	}
+	}*/
 	public String getCity() {
 		return city;
 	}
 	public void setCity(String city) {
 		this.city = city;
 	}
-*/
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
+	}
+	
+
 }

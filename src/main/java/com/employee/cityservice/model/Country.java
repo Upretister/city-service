@@ -5,38 +5,44 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name="country")
-@Getter
-@Setter
+/*@Getter
+@Setter*/
 /*@Data*/
+/*@NoArgsConstructor*/
 public class Country implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "country_id")
-    private long countryId;
+    private Long countryId;
 
     @Column(name = "country_name")
     private String country;
     
-    @OneToMany(mappedBy="city")
+    @OneToMany(mappedBy="country")
 	private Set<City> city;
-
-	/*public long getCountryId() {
+    
+    public Country() {}
+	public Long getCountryId() {
 		return countryId;
 	}
 
-	public void setCountryId(long countryId) {
+	public void setCountryId(Long countryId) {
 		this.countryId = countryId;
 	}
 
@@ -46,6 +52,6 @@ public class Country implements Serializable {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}*/
+	}
 
 }

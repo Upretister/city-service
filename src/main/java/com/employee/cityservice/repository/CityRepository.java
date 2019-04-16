@@ -7,5 +7,6 @@ import com.employee.cityservice.model.City;
 
 @Repository("cityRepository")
 public interface CityRepository extends JpaRepository<City, Long> {
-
+	
+	public City save(City city);
 }

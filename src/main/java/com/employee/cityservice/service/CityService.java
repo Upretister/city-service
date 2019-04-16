@@ -8,10 +8,10 @@ import com.employee.cityservice.model.City;
 
 public interface CityService {
 	
-	ResponseEntity<List<City>> getAllCities();
-	ResponseEntity<City> getCity(long cityId);
+	List<City> getAllCities();
+	City getCity(Long cityId) throws NoSuchFieldException;
 	ResponseEntity<City> saveCity(City city);
 	ResponseEntity<City> updateCity(City city);
-	ResponseEntity<City> deleteCity(long cityId);
+	ResponseEntity<City> deleteCity(Long cityId);
 
 }
